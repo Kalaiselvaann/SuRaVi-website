@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuRaVi Brain Enrichment Center</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(to bottom, #fce7f3, #f3e8ff, #fce7f3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #7c3aed;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto 1.5rem;
+            color: #374151;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-purple {
+            background-color: #7c3aed;
+            color: white;
+        }
+
+        .btn-purple:hover {
+            background-color: #6d28d9;
+        }
+
+        .btn-pink {
+            background-color: #ec4899;
+            color: white;
+        }
+
+        .btn-pink:hover {
+            background-color: #db2777;
+        }
+
+        .btn-green {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .btn-green:hover {
+            background-color: #059669;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 1.5rem;
+        }
+
+        .section-white {
+            background-color: white;
+        }
+
+        .section-purple-light {
+            background-color: #f3e8ff;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #7c3aed;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #7c3aed;
+        }
+
+        .section-text {
+            max-width: 64rem;
+            margin: 0 auto;
+            text-align: center;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid Styles */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid #c4b5fd;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-purple {
+            background-color: #f3e8ff;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #7c3aed;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            font-style: italic;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .card-center {
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            max-width: 48rem;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background-color: #f3e8ff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            max-width: 32rem;
+            margin: 0 auto;
+            border: 1px solid #c4b5fd;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .form-full {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .form-input {
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #c4b5fd;
+            background: white;
+            color: #374151;
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #7c3aed;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Testimonial quotes */
+        .quote {
+            font-style: italic;
+            color: #6b7280;
+        }
+
+        .quote::before {
+            content: '"';
+        }
+
+        .quote::after {
+            content: '"';
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>SuRaVi Brain Enrichment Center Pvt. Ltd.</h1>
+        <p>Empowering Young Minds through Abacus, Vedic Math, Creativity & More. A trusted space for children's growth and an opportunity for entrepreneurs.</p>
+        <div class="button-group">
+            <a href="#contact" class="btn btn-purple">Enroll Your Child</a>
+            <a href="#franchise" class="btn btn-pink">Become a Franchise Partner</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p class="section-text">
+                Founded on August 4, 2025, SuRaVi Brain Enrichment Center is a private educational company dedicated to nurturing children's intellectual, creative, and personal growth. With registered headquarters in Kanyakumari, Tamil Nadu, our vision is to shape future-ready kids and provide entrepreneurs with a meaningful business opportunity.
+            </p>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="section section-purple-light">
+        <div class="container">
+            <h2 class="section-title">Our Founders</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">Subashini</h3>
+                        <p class="card-subtitle">Co-Founder & Director</p>
+                        <p class="card-text">With a deep passion for early childhood education, Subashini believes that every child deserves the right environment to explore their hidden potential. Her vision for SuRaVi is to empower children with skills that last a lifetime.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">Kavithamalar C</h3>
+                        <p class="card-subtitle">Co-Founder & Director</p>
+                        <p class="card-text">Driven by the dream of nurturing young minds, Kavitha has dedicated herself to holistic learning. Her mission is to ensure that children not only excel academically but also grow in confidence, creativity, and life skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <div class="grid grid-4">
+                <div class="card card-purple">
+                    <div class="card-content card-center">
+                        <h3 class="card-title">Abacus Training</h3>
+                        <p class="card-text">Boosts concentration, memory, and speed in mathematics.</p>
+                    </div>
+                </div>
+                <div class="card card-purple">
+                    <div class="card-content card-center">
+                        <h3 class="card-title">Vedic Mathematics</h3>
+                        <p class="card-text">Learn ancient techniques to solve math quickly and creatively.</p>
+                    </div>
+                </div>
+                <div class="card card-purple">
+                    <div class="card-content card-center">
+                        <h3 class="card-title">Handwriting Classes</h3>
+                        <p class="card-text">Improve clarity, style, and confidence in writing.</p>
+                    </div>
+                </div>
+                <div class="card card-purple">
+                    <div class="card-content card-center">
+                        <h3 class="card-title">Drawing & Creativity</h3>
+                        <p class="card-text">Encourages imagination and artistic skills in children.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section section-purple-light">
+        <div class="container">
+            <h2 class="section-title">Why SuRaVi?</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-content card-center">
+                        <p class="card-text">21st-century skills like focus, confidence, and problem-solving.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-center">
+                        <p class="card-text">Personalized teaching methods for every child.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content card-center">
+                        <p class="card-text">Trusted curriculum for parents, proven returns for entrepreneurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franchise Section -->
+    <section id="franchise" class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Franchise Opportunities</h2>
+            <p class="section-text">
+                Join SuRaVi as a franchise partner and step into one of the most rewarding industries — education. With low investment, high returns, and complete support, you can create a lasting impact on your community while building your future.
+            </p>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="#contact" class="btn btn-pink">Apply for Franchise</a>
+            </div>
+
+            <h3 class="section-subtitle">What Our Partners Say</h3>
+            <div class="grid grid-3">
+                <div class="card card-purple">
+                    <div class="card-content">
+                        <p class="quote card-text">Starting a SuRaVi franchise was the best decision I made. The support and training are excellent.</p>
+                    </div>
+                </div>
+                <div class="card card-purple">
+                    <div class="card-content">
+                        <p class="quote card-text">I always wanted to work in education. With SuRaVi, I'm able to run a profitable business and make a difference.</p>
+                    </div>
+                </div>
+                <div class="card card-purple">
+                    <div class="card-content">
+                        <p class="quote card-text">The model is simple, effective, and impactful. Parents trust the brand, and children love the classes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Testimonials Section -->
+    <section class="section section-purple-light">
+        <div class="container">
+            <h2 class="section-title">What Parents Say</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote card-text">SuRaVi has transformed my daughter's confidence in math. The teachers are very supportive.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote card-text">My son's handwriting improved a lot. He also loves the drawing classes.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote card-text">I'm proud to be part of SuRaVi. My child not only improved academically but also became more creative.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <p>📍 No. 3/93, Sathya Nagar, Anjugramam, Kanyakumari, Tamil Nadu - 629401</p>
+                <p>📞 Subashini: +91 75983 59231 | Kavitha: +91 92841 25500</p>
+                <p>📧 Email: suravibec@gmail.com</p>
+            </div>
+
+            <!-- Enquiry Form -->
+            <div class="form-container">
+                <div class="form-grid">
+                    <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+                    <input type="tel" id="phone" class="form-input" placeholder="Phone" required>
+                    <input type="text" id="age" class="form-input form-full" placeholder="Child's Age">
+                    <textarea id="message" class="form-input form-textarea form-full" placeholder="Message" rows="3"></textarea>
+                </div>
+                <button onclick="sendEnquiry()" class="btn btn-purple" style="width: 100%;">Send Enquiry</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 SuRaVi Brain Enrichment Center Pvt. Ltd. | ROC Coimbatore | Authorized Capital ₹15,00,000 | Paid-up Capital ₹1,00,000
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917598359231" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" title="Chat on WhatsApp">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Form submission function
+        function sendEnquiry() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const age = document.getElementById('age').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !phone) {
+                alert('Please fill in your name and phone number.');
+                return;
+            }
+
+            const subject = `Enquiry from ${name}`;
+            const body = `Name: ${name}%0APhone: ${phone}%0AChild's Age: ${age}%0AMessage: ${message}`;
+            const mailtoLink = `mailto:suravibec@gmail.com?subject=${subject}&body=${body}`;
+            
+            window.open(mailtoLink);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.card, .section-title');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('fade-in');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
